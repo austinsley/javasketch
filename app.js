@@ -1,19 +1,22 @@
-
-
 $(document).ready(function(){
 	/* Draw Grid */
+
 	var createPad = function(x){
-		for (var n = 0; n < x; n++){
-	    for (var i = 0; i < x; i++){
+		var boxSize = $('#container').width() / x - 2;
+		for (var i = 0; i < x; i++){
+	    for (var j = 0; j < x; j++){
 	      $('<div class="boxes"></div>').appendTo('#container');
 	    };
 	    $('<br>').appendTo('#container');
 		};
+		$('.boxes').css('height',boxSize);
+		$('.boxes').css('width',boxSize);
 	};
-	createPad(32);
+
+	createPad(4);
 
 
-  /*Clears drawing*/
+	/*Clears drawing*/
 	$('button').click(function(){
 		$('#container').empty();
 		createPad(prompt('What size would you like?'));
