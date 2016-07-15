@@ -1,3 +1,8 @@
+form {
+  color: white;
+  margin-top: 12px;
+}
+
 body {
   background-color: black;
 }
@@ -9,6 +14,7 @@ div {
 h1 {
   color:white;
   font-family: Courier;
+  font-weight:lighter;
   font-size: 64px;
   margin-bottom: 0px;
 }
