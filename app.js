@@ -13,6 +13,15 @@ var color;
 var col;
 var colorChoice;
 
+var getRandomColor = function() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 var updateColor = function(){
 	col = document.getElementsByName('color');
 	for(var i = 0; i < col.length; i++){
@@ -33,11 +42,37 @@ var updateColor = function(){
 	};
 };
 
+var updateBorder = function(){
+	if (colorChoice === 'Rand'){
+		$('.boxes').hover(function(){
+			$('#container').css('border-color',getRandomColor);
+		});
+	}
+	else {
+		$('.boxes').hover(function(){
+			$('#container').css('border-color',color);
+		});
+	};
+};
+
+var colorBoxes = function(){
+	$('.boxes').hover(function(){
+		if (colorChoice === 'Rand'){
+			$(this).css('background-color',getRandomColor());
+		}
+
+		else {
+			$(this).css('background-color',color);
+		};
+	});
+};
+
 $(document).ready(function(){
 	/* Draws initial grid */
 	updateColor();
-	createPad(4);
-
+	updateBorder();
+	createPad(8);
+	colorBoxes();
 	/*Reset buttons*/
 	$('#clear').click(function(){
 		$('.boxes').css('background-color','black');
@@ -58,20 +93,13 @@ $(document).ready(function(){
 			else {createPad(size)};
 		};
 		checkNewSize(newSize);
-
-		$('.boxes').mouseover(function(){
-			$(this).css('background-color',color);
+		colorBoxes();
 		});
-	});
 
-	$('.boxes').mouseover(function(){
-		$(this).css('background-color',color);
-	});
+
 
 	$('input').click(function(){
-		console.log(colorChoice);
 		updateColor();
-		$('#container').css('border-color',color);
+		updateBorder();
 	});
-
 });
